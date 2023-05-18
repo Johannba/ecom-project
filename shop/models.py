@@ -58,6 +58,18 @@ class Commande(models.Model):
     def __str__(self):
         return str(self.id)
 
+    @property
+    def get_panier_total(self):
+        arcticles = self.commandearticle_set.all()
+        total = sum(arcticle.get_total for arcticle in arcticles)
+        return total
+
+    @property
+    def get_panier_article(self):
+        articles = self.commandearticle_set.all()
+        quantite_total = sum(article.quantite for article in articles)
+        return quantite_total
+
 
 class CommandeArticle(models.Model):
     produit = models.ForeignKey(
@@ -68,6 +80,11 @@ class CommandeArticle(models.Model):
     )
     quantite = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def get_total(self):
+        total = self.produit.price * self.quantite
+        return total
 
 
 class AddressChipping(models.Model):

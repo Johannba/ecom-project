@@ -59,15 +59,18 @@
                   <hr>
                   <h3>Recapitulatif de la commande</h3>
                   <hr>
-                  <div class="panier-row">
-                        <div style="flex:2"><img class="row-image" src="{% static 'images/cart-img.png' %}" alt="">
+                  {% for arcticle in arcticles %}
+                        <div class="panier-row">
+                              <div style="flex:2"><img class="row-image" src="{{ arcticle.produit.imageUrl }}" alt="">
+                              </div>
+                              <div style="flex:2">{{arcticle.produit.name}}</div>
+                              <div style="flex:1">{{arcticle.produit.price}}</div>
+                              <div style="flex:1">{{arcticle.quantite}}</div>
                         </div>
-                        <div style="flex:2">Produit 1</div>
-                        <div style="flex:1">$100</div>
-                        <div style="flex:1">2</div>
-                  </div> 69
-                  <h5>Articles: 2</h5>
-                  <h5>Total: $200</h5>
+
+                  {% endfor%}      
+                  <h5>Articles: {{commande.get_panier_article}}</h5>
+                  <h5>Total: {{commande.get_panier_total}}</h5>
             </div>
       </div>
 </div>
