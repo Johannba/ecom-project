@@ -60,20 +60,36 @@
                   <h3>Recapitulatif de la commande</h3>
                   <hr>
                   {% for arcticle in arcticles %}
-                        <div class="panier-row">
-                              <div style="flex:2"><img class="row-image" src="{{ arcticle.produit.imageUrl }}" alt="">
-                              </div>
-                              <div style="flex:2">{{arcticle.produit.name}}</div>
-                              <div style="flex:1">{{arcticle.produit.price}}</div>
-                              <div style="flex:1">{{arcticle.quantite}}</div>
+                  <div class="panier-row">
+                        <div style="flex:2"><img class="row-image" src="{{ arcticle.produit.imageUrl }}" alt="">
                         </div>
+                        <div style="flex:2">{{arcticle.produit.name}}</div>
+                        <div style="flex:1">{{arcticle.produit.price}}</div>
+                        <div style="flex:1">{{arcticle.quantite}}</div>
+                  </div>
 
-                  {% endfor%}      
+                  {% endfor%}
                   <h5>Articles: {{commande.get_panier_article}}</h5>
                   <h5>Total: {{commande.get_panier_total}}</h5>
             </div>
       </div>
 </div>
 
+<script type="text/javascript">
+
+      var produitPhysique = "{{ commande.produit_physique}}";
+
+      if (produitPhysique == "False") {
+            document.getElementById("shipping-info").innerHTML = "";
+      }
+
+      var form = document.getElementById('form');
+      form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            console.log('donnée en cours ...');
+            document.getElementById('form-button').classList.add('hidden');
+            document.getElementById('payment-info').classList.add('hidden');
+      })
+</script>
 
 {% endblock content %}

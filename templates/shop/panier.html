@@ -45,8 +45,8 @@
                         <div style="flex:1">
                               <p class="quantite">{{ arcticle.quantite }}</p>
                               <div class="quantite">
-                                    <img class="chg-quantite" src="{% static 'images/utils/arrow-up.png' %}" alt="">
-                                    <img class="chg-quantite" src="{% static 'images/utils/arrow-down.png' %}" alt="">
+                                    <img class="chg-quantite update-panier" data-produit = {{arcticle.produit.pk}} data-action="add" src="{% static 'images/utils/arrow-up.png' %}" alt="">
+                                    <img class="chg-quantite update-panier" data-produit = {{arcticle.produit.pk}} data-action="remove" src="{% static 'images/utils/arrow-down.png' %}" alt="">
                               </div>
                         </div>
                         <div style="flex:1">${{arcticle.get_total}}</div>

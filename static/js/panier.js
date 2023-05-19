@@ -38,5 +38,6 @@ function updateUserCommande(produit, action) {
 
             .then((data) => {
                   console.log('data', data)
+                  location.reload();
             })
 }

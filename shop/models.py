@@ -70,6 +70,14 @@ class Commande(models.Model):
         quantite_total = sum(article.quantite for article in articles)
         return quantite_total
 
+    @property
+    def produit_physique(self):
+        articles = self.commandearticle_set.all()
+        minimum_un_produit_physique = any(
+            article.produit.digital == False for article in articles
+        )
+        return minimum_un_produit_physique
+
 
 class CommandeArticle(models.Model):
     produit = models.ForeignKey(
